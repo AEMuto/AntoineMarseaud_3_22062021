@@ -1,0 +1,24 @@
+{
+  "name": "ohmyfood",
+  "version": "1.0.0",
+  "description": "Un site répertoriant les menus de restaurants gastronomiques",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AEMuto/AntoineMarseaud_3_22062021.git"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "openclassrooms"
+  ],
+  "author": "Antoine Marseaud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AEMuto/AntoineMarseaud_3_22062021/issues"
+  },
+  "homepage": "https://github.com/AEMuto/AntoineMarseaud_3_22062021#readme"
+}

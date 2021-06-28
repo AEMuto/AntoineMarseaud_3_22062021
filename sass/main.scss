@@ -1,0 +1,239 @@
+$clr-primary: #9356dc;
+$clr-secondary: #ff79da;
+$clr-tertiary: #99e2d0;
+
+$clr-bg-default: #fff;
+$clr-bg-base: #eaeaea;
+$clr-bg-dark: #353535;
+$clr-bg-light: #f6f6f6;
+
+$padding: calc(
+  20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065)
+);
+
+$typography: (
+  color: (
+    default: #000,
+    grey: #7e7e7e,
+    white: #fff,
+  ),
+  font-family: (
+    alt: (
+      Shrikhand,
+      cursive,
+    ),
+    default: (
+      Roboto,
+      sans-serif,
+    ),
+  ),
+  font-size: (
+    logo: 1.875rem,
+    heading: 1.5rem,
+    title: 1.125rem,
+    sub: 1.075rem,
+    default: 1rem,
+    small: 0.875rem,
+  ),
+  font-weight: (
+    thin: 100,
+    light: 300,
+    default: 400,
+    medium: 500,
+    bold: 700,
+  ),
+);
+
+@mixin fonts($args...) {
+  $properties: map-keys($typography);
+  $results: ();
+  @each $key, $value in $typography {
+    $map: map-get($typography, $key);
+    @each $subKey, $subValue in $map {
+      @each $arg in $args {
+        @if $arg == $subKey {
+          $tempList: (
+            $key: $arg,
+          );
+          $results: map-merge($results, $tempList);
+        }
+      }
+    }
+  }
+  // @debug $results;
+  @each $key, $value in $properties {
+    @if map-has-key($results, $key) != true {
+      $tempMap: (
+        $key: default,
+      );
+      $results: map-merge($results, $tempMap);
+    }
+  }
+  // @debug $results;
+  @each $key, $value in $results {
+    $map: map-get($typography, $key);
+    #{$key}: map-get($map, $value);
+  }
+}
+
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Shrikhand&display=swap);
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/*
+  We inherit box-sizing: border-box; from our <html> selector
+  Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
+*/
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+nav,
+header,
+main,
+footer {
+  padding: 0 max(#{$padding}, (100vw - 1340px) / 2);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+// Composants
+.button {
+  @include fonts(medium);
+  letter-spacing: 0.06rem;
+  background: $clr-bg-default;
+  padding: 1.2rem;
+  border-radius: 2.2rem;
+  position: relative;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  &--cta {
+    background: linear-gradient(to top left, $clr-primary, $clr-secondary);
+    a {
+      color: $clr-bg-default;
+    }
+  }
+  &--usage {
+    // ! Mettre un counter-reset dans le container parent de ces boutons
+    margin: 0 0 0 0.8rem;
+    border-radius: 1.25rem;
+    background: $clr-bg-light;
+    display: flex;
+    p {
+      @include fonts(bold);
+    }
+    i.fas {
+      font-size: 1.2rem;
+      margin: 0 0.5rem 0 0.3rem;
+      color: map-get($typography, color, grey);
+    }
+    &::before {
+      counter-increment: number;
+      content: counter(number);
+      position: absolute;
+      background: $clr-primary;
+      color: $clr-bg-default;
+      clip-path: circle();
+      left: -0.8rem;
+      top: 0.8rem;
+      padding: 0.5rem;
+    }
+    &:hover {
+    }
+  }
+}
+
+// Navigation
+
+nav {
+  text-align: center;
+  h1 {
+    padding: 0.25rem;
+    @include fonts(logo, alt);
+  }
+  .location {
+    margin: 0 calc(#{$padding} * -1);
+    background: linear-gradient(
+      darken($clr-bg-base, 20%) 0.1rem,
+      $clr-bg-base 0.4rem
+    );
+    p {
+      padding: 1rem;
+      @include fonts(medium);
+    }
+    .fas {
+      margin: 0 1rem 0 -1rem;
+    }
+  }
+}
+
+// Header
+header {
+  display: grid;
+  .hero {
+    background: $clr-bg-light;
+    margin: 0 calc(#{$padding} * -1);
+    padding: 2rem $padding;
+    text-align: center;
+    h1 {
+      width: 85%;
+      margin: 0 auto 1rem auto;
+      @include fonts(heading, bold);
+    }
+    p {
+      margin-bottom: 2rem;
+      @include fonts(title, light);
+    }
+    .button {
+      margin-bottom: 2rem;
+    }
+  }
+  .usage {
+    padding: 2rem 0;
+    h1 {
+      margin: 0 0 2.5rem 0;
+      @include fonts(heading, bold);
+    }
+    .container {
+      counter-reset: number;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      .button.button--usage {
+        &:nth-of-type(1) i.fas {
+          transform: scale(1.3, 1.2);
+        }
+        &:nth-of-type(n + 2) i.fas {
+          transform: scale(0.9, 1.1);
+        }
+        &:nth-of-type(3) {
+          background: adjust-color(
+            $clr-primary,
+            $saturation: 50%,
+            $lightness: 36%
+          );
+          i.fas {
+            color: $clr-primary;
+          }
+        }
+      }
+    }
+  }
+}

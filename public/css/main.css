@@ -1,0 +1,165 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Shrikhand&display=swap);
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/*
+  We inherit box-sizing: border-box; from our <html> selector
+  Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
+*/
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+nav,
+header,
+main,
+footer {
+  padding: 0 max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+.button {
+  font-weight: 500;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06rem;
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 2.2rem;
+  position: relative;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
+}
+.button--cta {
+  background: linear-gradient(to top left, #9356dc, #ff79da);
+}
+.button--cta a {
+  color: #fff;
+}
+.button--usage {
+  margin: 0 0 0 0.8rem;
+  border-radius: 1.25rem;
+  background: #f6f6f6;
+  display: flex;
+}
+.button--usage p {
+  font-weight: 700;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+}
+.button--usage i.fas {
+  font-size: 1.2rem;
+  margin: 0 0.5rem 0 0.3rem;
+  color: #7e7e7e;
+}
+.button--usage::before {
+  counter-increment: number;
+  content: counter(number);
+  position: absolute;
+  background: #9356dc;
+  color: #fff;
+  clip-path: circle();
+  left: -0.8rem;
+  top: 0.8rem;
+  padding: 0.5rem;
+}
+nav {
+  text-align: center;
+}
+nav h1 {
+  padding: 0.25rem;
+  font-family: Shrikhand, cursive;
+  font-size: 1.875rem;
+  color: #000;
+  font-weight: 400;
+}
+nav .location {
+  margin: 0 calc(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ) * -1);
+  background: linear-gradient(#b7b7b7 0.1rem, #eaeaea 0.4rem);
+}
+nav .location p {
+  padding: 1rem;
+  font-weight: 500;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+}
+nav .location .fas {
+  margin: 0 1rem 0 -1rem;
+}
+
+header {
+  display: grid;
+}
+header .hero {
+  background: #f6f6f6;
+  margin: 0 calc(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ) * -1);
+  padding: 2rem calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) );
+  text-align: center;
+}
+header .hero h1 {
+  width: 85%;
+  margin: 0 auto 1rem auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  font-family: Roboto, sans-serif;
+}
+header .hero p {
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #000;
+  font-family: Roboto, sans-serif;
+}
+header .hero .button {
+  margin-bottom: 2rem;
+}
+header .usage {
+  padding: 2rem 0;
+}
+header .usage h1 {
+  margin: 0 0 2.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  font-family: Roboto, sans-serif;
+}
+header .usage .container {
+  counter-reset: number;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+header .usage .container .button.button--usage:nth-of-type(1) i.fas {
+  transform: scale(1.3, 1.2);
+}
+header .usage .container .button.button--usage:nth-of-type(n + 2) i.fas {
+  transform: scale(0.9, 1.1);
+}
+header .usage .container .button.button--usage:nth-of-type(3) {
+  background: #f4ebff;
+}
+header .usage .container .button.button--usage:nth-of-type(3) i.fas {
+  color: #9356dc;
+}
+
+/*# sourceMappingURL=main.css.map */
