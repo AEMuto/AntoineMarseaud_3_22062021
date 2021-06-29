@@ -11,6 +11,8 @@ $padding: calc(
   20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065)
 );
 
+$padding-page: max(#{$padding}, (100vw - 1340px) / 2);
+
 $typography: (
   color: (
     default: #000,
@@ -96,13 +98,6 @@ html {
   margin: 0;
 }
 
-nav,
-header,
-main,
-footer {
-  padding: 0 max(#{$padding}, (100vw - 1340px) / 2);
-}
-
 ul {
   list-style: none;
 }
@@ -131,7 +126,7 @@ button {
     }
   }
   &--usage {
-    // ! Mettre un counter-reset dans le container parent de ces boutons
+    // ! Mettre un - counter-reset: number; - dans le container parent de ces boutons
     margin: 0 0 0 0.8rem;
     border-radius: 1.25rem;
     background: $clr-bg-light;
@@ -159,21 +154,72 @@ button {
     }
   }
 }
+.container-card {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-auto-rows: 37.481259370314845vh;
+}
+.card {
+  background: $clr-bg-default;
+  border-radius: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-auto-rows: 26.23688155922039vh 1fr;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  &__img-wrapper {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__txt {
+    position: relative;
+    align-self: center;
+    margin: 0 0 0 1rem;
+    .card__title {
+      @include fonts(title, bold);
+    }
+    .card__location {
+      @include fonts(sub, light);
+    }
+    .card__like {
+      position: absolute;
+      right: 1.8rem;
+      top: 0.4rem;
+      margin: auto 0;
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: #000;
+      stroke-width: 1;
+    }
+  }
+}
 
 // Navigation
 
 nav {
   text-align: center;
+  > * {
+    padding: 0 $padding-page;
+  }
   h1 {
-    padding: 0.25rem;
+    position: relative;
+    margin: 0.25rem 0;
+    box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
     @include fonts(logo, alt);
+    i.fas {
+      position: absolute;
+      left: $padding-page;
+      top: 0.5rem;
+      font-size: 1.5rem;
+    }
   }
   .location {
-    margin: 0 calc(#{$padding} * -1);
-    background: linear-gradient(
-      darken($clr-bg-base, 20%) 0.1rem,
-      $clr-bg-base 0.4rem
-    );
+    background: $clr-bg-base;
     p {
       padding: 1rem;
       @include fonts(medium);
@@ -187,10 +233,11 @@ nav {
 // Header
 header {
   display: grid;
+  > * {
+    padding: 2rem $padding-page;
+  }
   .hero {
     background: $clr-bg-light;
-    margin: 0 calc(#{$padding} * -1);
-    padding: 2rem $padding;
     text-align: center;
     h1 {
       width: 85%;
@@ -206,7 +253,6 @@ header {
     }
   }
   .usage {
-    padding: 2rem 0;
     h1 {
       margin: 0 0 2.5rem 0;
       @include fonts(heading, bold);
@@ -234,6 +280,37 @@ header {
           }
         }
       }
+    }
+  }
+}
+
+main {
+  padding: 2rem $padding-page;
+  background: $clr-bg-light;
+  h1 {
+    margin: 0 0 1rem 0;
+    @include fonts(heading, bold);
+  }
+}
+
+footer {
+  padding: 1rem $padding-page 2rem $padding-page;
+  background: $clr-bg-dark;
+  h1 {
+    margin: 0 0 1rem 0;
+    @include fonts(white, alt, title);
+  }
+  li {
+    margin: 0 0 0.5rem 0;
+    i.fas {
+      margin: 0 0.6rem 0 0;
+      font-size: 0.725rem;
+    }
+    &:nth-of-type(-n + 2) a {
+      @include fonts(white);
+    }
+    &:nth-of-type(n + 3) a {
+      @include fonts(white, light);
     }
   }
 }
