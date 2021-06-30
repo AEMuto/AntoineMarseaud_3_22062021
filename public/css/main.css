@@ -41,6 +41,7 @@ button {
   box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
 }
 .button--cta {
+  min-width: 13rem;
   background: linear-gradient(to top left, #9356dc, #ff79da);
 }
 .button--cta a {
@@ -74,6 +75,7 @@ button {
   top: 0.8rem;
   padding: 0.5rem;
 }
+
 .container-card {
   display: grid;
   gap: 2rem;
@@ -124,6 +126,7 @@ button {
   stroke-width: 1;
 }
 
+/* Accueil **************************************************************************************/
 nav {
   text-align: center;
 }
@@ -132,7 +135,6 @@ nav > * {
 }
 nav h1 {
   position: relative;
-  margin: 0.25rem 0;
   box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
   font-family: Shrikhand, cursive;
   font-size: 1.875rem;
@@ -142,8 +144,8 @@ nav h1 {
 nav h1 i.fas {
   position: absolute;
   left: max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
-  top: 0.5rem;
-  font-size: 1.5rem;
+  top: 0.8rem;
+  font-size: 1.3rem;
 }
 nav .location {
   background: #eaeaea;
@@ -161,13 +163,13 @@ nav .location .fas {
 
 header {
   display: grid;
+  text-align: center;
 }
 header > * {
   padding: 2rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
 }
 header .hero {
   background: #f6f6f6;
-  text-align: center;
 }
 header .hero h1 {
   width: 85%;
@@ -254,6 +256,104 @@ footer li:nth-of-type(n + 3) a {
   font-weight: 300;
   font-family: Roboto, sans-serif;
   font-size: 1rem;
+}
+
+/* Menu *****************************************************************************************/
+main.menu {
+  padding: 0;
+  padding-top: 13.75rem;
+  position: relative;
+  background: none;
+}
+main.menu picture {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 17rem;
+}
+main.menu picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main.menu .carte {
+  background: #f6f6f6;
+  padding: 1.8rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2) 6rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
+  border-radius: 3rem 3rem 0 0;
+  display: flex;
+  flex-direction: column;
+}
+main.menu .carte__title {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 1rem 0;
+}
+main.menu .carte__title h1 {
+  font-family: Shrikhand, cursive;
+  font-size: 1.875rem;
+  color: #000;
+  font-weight: 400;
+  margin: 0;
+}
+main.menu .carte__title .like {
+  margin: 0.5rem 1rem 0 0;
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 1;
+}
+main.menu .carte__dishes {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+main.menu .carte__dishes h2 {
+  font-weight: 300;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0 0 2rem 0;
+  position: relative;
+}
+main.menu .carte__dishes h2::after {
+  content: "";
+  position: absolute;
+  height: 0.2rem;
+  width: 2rem;
+  background: #99e2d0;
+  bottom: -0.5rem;
+  left: 0;
+}
+main.menu .carte__dishes .button--dish {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0;
+  padding: 0.8rem;
+}
+main.menu .carte__dishes .button--dish p {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+main.menu .carte__dishes .button--dish p span {
+  font-weight: 700;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+}
+main.menu .carte .button--cta {
+  margin: 2rem auto 0 auto;
 }
 
 /*# sourceMappingURL=main.css.map */

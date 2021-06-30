@@ -120,6 +120,7 @@ button {
   position: relative;
   box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
   &--cta {
+    min-width: 13rem;
     background: linear-gradient(to top left, $clr-primary, $clr-secondary);
     a {
       color: $clr-bg-default;
@@ -149,8 +150,6 @@ button {
       left: -0.8rem;
       top: 0.8rem;
       padding: 0.5rem;
-    }
-    &:hover {
     }
   }
 }
@@ -198,7 +197,7 @@ button {
     }
   }
 }
-
+/* Accueil **************************************************************************************/
 // Navigation
 
 nav {
@@ -208,14 +207,13 @@ nav {
   }
   h1 {
     position: relative;
-    margin: 0.25rem 0;
     box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
     @include fonts(logo, alt);
     i.fas {
       position: absolute;
       left: $padding-page;
-      top: 0.5rem;
-      font-size: 1.5rem;
+      top: 0.8rem;
+      font-size: 1.3rem;
     }
   }
   .location {
@@ -233,12 +231,13 @@ nav {
 // Header
 header {
   display: grid;
+  text-align: center;
   > * {
     padding: 2rem $padding-page;
   }
   .hero {
     background: $clr-bg-light;
-    text-align: center;
+
     h1 {
       width: 85%;
       margin: 0 auto 1rem auto;
@@ -311,6 +310,94 @@ footer {
     }
     &:nth-of-type(n + 3) a {
       @include fonts(white, light);
+    }
+  }
+}
+
+/* Menu *****************************************************************************************/
+
+main.menu {
+  padding: 0;
+  padding-top: 13.75rem;
+  position: relative;
+  background: none;
+  picture {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 17rem;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .carte {
+    background: $clr-bg-light;
+    padding: 1.8rem $padding-page 6rem $padding-page;
+    border-radius: 3rem 3rem 0 0;
+    display: flex;
+    flex-direction: column;
+    &__title {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 1rem 0;
+      h1 {
+        @include fonts(logo, alt);
+        margin: 0;
+      }
+      .like {
+        margin: 0.5rem 1rem 0 0;
+        width: 25px;
+        height: 25px;
+        fill: none;
+        stroke: #000;
+        stroke-width: 1;
+      }
+    }
+    &__dishes {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+      h2 {
+        @include fonts(light);
+        text-transform: uppercase;
+        margin: 0 0 2rem 0;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          height: 0.2rem;
+          width: 2rem;
+          background: $clr-tertiary;
+          bottom: -0.5rem;
+          left: 0;
+        }
+      }
+      .button--dish {
+        display: flex;
+        flex-direction: column;
+
+        border-radius: 1rem;
+        margin: 0 0 1rem 0;
+        letter-spacing: 0;
+        padding: 0.8rem;
+        p {
+          @include fonts(light, small);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          span {
+            @include fonts(bold, regular);
+          }
+        }
+      }
+    }
+    .button--cta {
+      margin: 2rem auto 0 auto;
     }
   }
 }
