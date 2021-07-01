@@ -83,6 +83,7 @@ $typography: (
 html {
   box-sizing: border-box;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 /*
@@ -108,6 +109,9 @@ a {
 
 button {
   border: none;
+  &:active {
+    outline: none;
+  }
 }
 
 // Composants
@@ -119,12 +123,11 @@ button {
   border-radius: 2.2rem;
   position: relative;
   box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  cursor: pointer;
   &--cta {
     min-width: 13rem;
     background: linear-gradient(to top left, $clr-primary, $clr-secondary);
-    a {
-      color: $clr-bg-default;
-    }
+    color: $clr-bg-default;
   }
   &--usage {
     // ! Mettre un - counter-reset: number; - dans le container parent de ces boutons
@@ -132,6 +135,7 @@ button {
     border-radius: 1.25rem;
     background: $clr-bg-light;
     display: flex;
+    cursor: auto;
     p {
       @include fonts(bold);
     }
@@ -185,25 +189,58 @@ button {
       @include fonts(sub, light);
     }
     .card__like {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       position: absolute;
-      right: 1.8rem;
-      top: 0.4rem;
-      margin: auto 0;
-      width: 25px;
-      height: 25px;
-      fill: none;
-      stroke: #000;
-      stroke-width: 1;
+      right: 1rem;
+      bottom: 0.7rem;
+      height: 1.5rem;
+      width: 1.6rem;
+      overflow: hidden;
+
+      > * {
+        position: absolute;
+        background: #000;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+      i.far.fa-heart {
+        transform: scale(1.5, 1.7);
+      }
+      i.fas.fa-heart {
+        transition: 0.5s ease-in-out;
+        opacity: 0%;
+        transform: scale(0);
+      }
+      &:hover {
+        > * {
+          background: linear-gradient(
+            to bottom left,
+            $clr-primary,
+            $clr-secondary
+          );
+          color: transparent;
+          background-clip: text;
+          -webkit-background-clip: text;
+        }
+        i.fas.fa-heart {
+          opacity: 100%;
+          transform: scale(1.5, 1.7);
+        }
+      }
     }
   }
 }
 /* Accueil **************************************************************************************/
-// Navigation
 
+// Navigation
 nav {
   text-align: center;
   > * {
-    padding: 0 $padding-page;
+    padding: 0.4rem $padding-page;
   }
   h1 {
     position: relative;
@@ -212,14 +249,14 @@ nav {
     i.fas {
       position: absolute;
       left: $padding-page;
-      top: 0.8rem;
+      top: 1.2rem;
       font-size: 1.3rem;
     }
   }
   .location {
     background: $clr-bg-base;
     p {
-      padding: 1rem;
+      margin: 0.4rem 0;
       @include fonts(medium);
     }
     .fas {
@@ -283,6 +320,7 @@ header {
   }
 }
 
+// Main
 main {
   padding: 2rem $padding-page;
   background: $clr-bg-light;
@@ -292,6 +330,7 @@ main {
   }
 }
 
+// Footer
 footer {
   padding: 1rem $padding-page 2rem $padding-page;
   background: $clr-bg-dark;
@@ -314,8 +353,9 @@ footer {
   }
 }
 
-/* Menu *****************************************************************************************/
+/* Menu - Pages **********************************************************************************/
 
+// Main
 main.menu {
   padding: 0;
   padding-top: 13.75rem;
@@ -352,7 +392,7 @@ main.menu {
         margin: 0.5rem 1rem 0 0;
         width: 25px;
         height: 25px;
-        fill: none;
+        fill: blue;
         stroke: #000;
         stroke-width: 1;
       }

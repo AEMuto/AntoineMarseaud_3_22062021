@@ -2,6 +2,7 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 /*
@@ -27,6 +28,9 @@ a {
 button {
   border: none;
 }
+button:active {
+  outline: none;
+}
 
 .button {
   font-weight: 500;
@@ -39,12 +43,11 @@ button {
   border-radius: 2.2rem;
   position: relative;
   box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
+  cursor: pointer;
 }
 .button--cta {
   min-width: 13rem;
   background: linear-gradient(to top left, #9356dc, #ff79da);
-}
-.button--cta a {
   color: #fff;
 }
 .button--usage {
@@ -52,6 +55,7 @@ button {
   border-radius: 1.25rem;
   background: #f6f6f6;
   display: flex;
+  cursor: auto;
 }
 .button--usage p {
   font-weight: 700;
@@ -115,15 +119,41 @@ button {
   font-family: Roboto, sans-serif;
 }
 .card__txt .card__like {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   position: absolute;
-  right: 1.8rem;
-  top: 0.4rem;
-  margin: auto 0;
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: #000;
-  stroke-width: 1;
+  right: 1rem;
+  bottom: 0.7rem;
+  height: 1.5rem;
+  width: 1.6rem;
+  overflow: hidden;
+}
+.card__txt .card__like > * {
+  position: absolute;
+  background: #000;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.card__txt .card__like i.far.fa-heart {
+  transform: scale(1.5, 1.7);
+}
+.card__txt .card__like i.fas.fa-heart {
+  transition: 0.5s ease-in-out;
+  opacity: 0%;
+  transform: scale(0);
+}
+.card__txt .card__like:hover > * {
+  background: linear-gradient(to bottom left, #9356dc, #ff79da);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.card__txt .card__like:hover i.fas.fa-heart {
+  opacity: 100%;
+  transform: scale(1.5, 1.7);
 }
 
 /* Accueil **************************************************************************************/
@@ -131,7 +161,7 @@ nav {
   text-align: center;
 }
 nav > * {
-  padding: 0 max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
+  padding: 0.4rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
 }
 nav h1 {
   position: relative;
@@ -144,14 +174,14 @@ nav h1 {
 nav h1 i.fas {
   position: absolute;
   left: max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1340px) / 2);
-  top: 0.8rem;
+  top: 1.2rem;
   font-size: 1.3rem;
 }
 nav .location {
   background: #eaeaea;
 }
 nav .location p {
-  padding: 1rem;
+  margin: 0.4rem 0;
   font-weight: 500;
   color: #000;
   font-family: Roboto, sans-serif;
@@ -258,7 +288,7 @@ footer li:nth-of-type(n + 3) a {
   font-size: 1rem;
 }
 
-/* Menu *****************************************************************************************/
+/* Menu - Pages **********************************************************************************/
 main.menu {
   padding: 0;
   padding-top: 13.75rem;
@@ -301,7 +331,7 @@ main.menu .carte__title .like {
   margin: 0.5rem 1rem 0 0;
   width: 25px;
   height: 25px;
-  fill: none;
+  fill: blue;
   stroke: #000;
   stroke-width: 1;
 }
