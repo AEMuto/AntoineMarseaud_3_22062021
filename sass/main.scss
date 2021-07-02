@@ -223,9 +223,11 @@ button {
   &__img-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    place-items: center;
-    place-content: center;
+    grid-template-rows: 1fr;
     overflow: hidden;
+    source {
+      display: none;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -243,31 +245,28 @@ button {
       @include fonts(sub, light);
     }
     .card__like {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
       position: absolute;
       right: 1rem;
       bottom: 0.7rem;
-      height: 1.5rem;
-      width: 1.6rem;
-      overflow: hidden;
-
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       > * {
-        position: absolute;
         background: #000;
-        color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
+        color: transparent;
       }
       i.far.fa-heart {
         transform: scale(1.5, 1.7);
       }
       i.fas.fa-heart {
-        transition: 0.5s ease-in-out;
+        position: absolute;
         opacity: 0%;
         transform: scale(0);
+        transition: all 0.5s 0.2s linear;
       }
       &:hover {
         > * {
@@ -276,9 +275,9 @@ button {
             $clr-primary,
             $clr-secondary
           );
-          color: transparent;
           background-clip: text;
           -webkit-background-clip: text;
+          color: transparent;
         }
         i.fas.fa-heart {
           opacity: 100%;
