@@ -208,6 +208,9 @@ button {
   @include responsive(landscape) {
     grid-auto-rows: 50vh;
   }
+  @include responsive(lg) {
+    grid-auto-rows: 35vh;
+  }
 }
 .card {
   background: $clr-bg-default;
@@ -399,6 +402,11 @@ header {
 main {
   padding: 2rem $padding-page;
   background: $clr-bg-light;
+  @include responsive(lg) {
+    padding: 2rem;
+    margin: 2rem $padding-page;
+    border-radius: 2rem;
+  }
   h1 {
     margin: 0 0 2rem 0;
     @include fonts(heading, bold);

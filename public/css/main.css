@@ -98,6 +98,11 @@ button:active {
     grid-auto-rows: 50vh;
   }
 }
+@media only screen and (min-width: 1200px) {
+  .container-card {
+    grid-auto-rows: 35vh;
+  }
+}
 
 .card {
   background: #fff;
@@ -300,6 +305,13 @@ header .usage .container .button.button--usage:nth-of-type(3) i.fas {
 main {
   padding: 2rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1200px) / 2);
   background: #f6f6f6;
+}
+@media only screen and (min-width: 1200px) {
+  main {
+    padding: 2rem;
+    margin: 2rem max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1200px) / 2);
+    border-radius: 2rem;
+  }
 }
 main h1 {
   margin: 0 0 2rem 0;
