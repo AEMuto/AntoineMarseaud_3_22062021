@@ -563,7 +563,7 @@ main.menu {
           justify-content: space-between;
           flex: 1;
           height: 100%;
-          padding: 0.8rem;
+          padding: 0.8rem 0 0.8rem 0.8rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -580,7 +580,7 @@ main.menu {
           }
         }
         .button__price {
-          padding: 0.8rem 1rem;
+          padding: 0.8rem 1rem 0.8rem 0;
           align-self: flex-end;
           @include fonts(bold);
         }
