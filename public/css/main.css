@@ -361,6 +361,11 @@ main.menu {
   position: relative;
   background: none;
 }
+@media only screen and (min-width: 768px) {
+  main.menu {
+    padding-bottom: 4rem;
+  }
+}
 main.menu picture {
   position: absolute;
   z-index: -1;
@@ -369,6 +374,11 @@ main.menu picture {
   overflow: hidden;
   height: 17rem;
   width: 100vw;
+}
+@media only screen and (min-width: 768px) {
+  main.menu picture {
+    height: 100%;
+  }
 }
 main.menu picture img {
   width: 100%;
@@ -381,6 +391,13 @@ main.menu .carte {
   border-radius: 3rem 3rem 0 0;
   display: flex;
   flex-direction: column;
+}
+@media only screen and (min-width: 768px) {
+  main.menu .carte {
+    margin: 0 max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1200px) / 2) 0 max(calc( 20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065) ), (100vw - 1200px) / 2);
+    padding: 1.8rem 2rem 4rem 2rem;
+    border-radius: 3rem;
+  }
 }
 main.menu .carte__title {
   display: flex;
