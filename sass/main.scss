@@ -147,8 +147,12 @@ ul {
   list-style: none;
 }
 
-a {
+a,
+a:hover,
+a:active,
+a:visited {
   text-decoration: none;
+  color: #000;
 }
 
 button {
@@ -167,7 +171,6 @@ button {
   position: relative;
   @include shadow();
   cursor: pointer;
-  overflow: hidden;
   &--cta {
     padding: $padding-button;
     min-width: 13rem;
@@ -553,6 +556,7 @@ main.menu {
         justify-content: flex-start;
         text-align: left;
         height: 4.375rem;
+        overflow: hidden;
         .button__text {
           display: flex;
           flex-direction: column;

@@ -28,8 +28,12 @@ ul {
   list-style: none;
 }
 
-a {
+a,
+a:hover,
+a:active,
+a:visited {
   text-decoration: none;
+  color: #000;
 }
 
 button {
@@ -50,7 +54,6 @@ button:active {
   position: relative;
   box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
   cursor: pointer;
-  overflow: hidden;
 }
 .button--cta {
   padding: 1.2rem;
@@ -476,6 +479,7 @@ main.menu .carte__dishes .button--dish {
   justify-content: flex-start;
   text-align: left;
   height: 4.375rem;
+  overflow: hidden;
 }
 main.menu .carte__dishes .button--dish .button__text {
   display: flex;
