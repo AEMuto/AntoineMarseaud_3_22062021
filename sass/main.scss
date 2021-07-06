@@ -626,7 +626,7 @@ main.menu {
 // Animations
 
 .carte__dishes {
-  @for $i from 1 to 4 {
+  @for $i from 1 to 5 {
     .button--dish:nth-of-type(#{$i}) {
       animation: dish
         $duration
