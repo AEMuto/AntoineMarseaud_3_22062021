@@ -4,6 +4,7 @@
 /** Breakpoints **/
 /** Padding **/
 /** Typographie **/
+/** Animation **/
 /*** Mixins ***/
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Shrikhand&display=swap);
 html {
@@ -465,8 +466,8 @@ main.menu .carte__dishes h2 {
 main.menu .carte__dishes h2::after {
   content: "";
   position: absolute;
-  height: 0.2rem;
-  width: 2rem;
+  height: 0.15rem;
+  width: 2.3rem;
   background: #99e2d0;
   bottom: -0.5rem;
   left: 0;
@@ -544,6 +545,29 @@ main.menu .carte__dishes .button--dish:hover .button__order i.fas {
 }
 main.menu .carte .button--cta {
   margin: 2rem auto 0 auto;
+}
+
+.carte__dishes .button--dish:nth-of-type(1) {
+  animation: dish 0.35s cubic-bezier(0.7, 0.4, 0.7, 0.7) 0.15s both;
+}
+.carte__dishes .button--dish:nth-of-type(2) {
+  animation: dish 0.35s cubic-bezier(0.7, 0.4, 0.7, 0.7) 0.3s both;
+}
+.carte__dishes .button--dish:nth-of-type(3) {
+  animation: dish 0.35s cubic-bezier(0.7, 0.4, 0.7, 0.7) 0.45s both;
+}
+
+@keyframes dish {
+  0% {
+    opacity: 0%;
+    transform: translateY(0.6rem);
+  }
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
