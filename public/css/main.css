@@ -52,17 +52,37 @@ button:active {
   letter-spacing: 0.06rem;
   background: #fff;
   border-radius: 2.2rem;
-  position: relative;
-  box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
   cursor: pointer;
 }
 .button--cta {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
+  position: relative;
   padding: 1.2rem;
   min-width: 13rem;
   background: linear-gradient(to top left, #9356dc, #ff79da);
   color: #fff;
 }
+.button--cta::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 2.2rem;
+  box-shadow: 0rem 0.3rem 0.5rem 0rem #9b9b9b;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.button--cta:hover::after {
+  opacity: 1;
+}
 .button--usage {
+  box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
+  position: relative;
   margin: 0 0 0 0.8rem;
   padding: 1.2rem;
   border-radius: 1.25rem;
@@ -114,13 +134,34 @@ button:active {
   background: #fff;
   border-radius: 1.2rem;
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 1fr 4.688rem;
   box-shadow: 0rem 0.2rem 0.4rem 0rem #cecece;
-  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 1.2rem;
+  box-shadow: 0rem 0.3rem 0.5rem 0rem #9b9b9b;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.015);
+}
+.card:hover::after {
+  opacity: 1;
 }
 .card__img-wrapper {
   display: grid;
+  border-radius: 1.2rem 1.2rem 0 0;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   overflow: hidden;
@@ -480,7 +521,8 @@ main.menu .carte__dishes .button--dish {
   justify-content: flex-start;
   text-align: left;
   height: 4.375rem;
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 main.menu .carte__dishes .button--dish .button__text {
   display: flex;
@@ -530,6 +572,7 @@ main.menu .carte__dishes .button--dish .button__order {
   color: #fff;
   transform-origin: right;
   transform: scaleX(0);
+  opacity: 0;
   transition: all 0.5s ease-in-out;
 }
 main.menu .carte__dishes .button--dish .button__order i.fas {
@@ -537,6 +580,7 @@ main.menu .carte__dishes .button--dish .button__order i.fas {
   transition: 0.5s ease-in-out;
 }
 main.menu .carte__dishes .button--dish:hover .button__order {
+  opacity: 1;
   width: 3.75rem;
   transform: scaleX(1);
 }
@@ -574,7 +618,7 @@ main.menu .carte .button--cta {
 }
 .loader {
   position: fixed;
-  background: #9356dc;
+  background: linear-gradient(to top left, #9356dc, #ff79da);
   top: 0;
   right: 0;
   bottom: 0;
@@ -584,7 +628,7 @@ main.menu .carte .button--cta {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: loader 3s 0.5s ease-in-out both;
+  animation: loader 5s 0.5s ease-in-out both;
 }
 .loader > * {
   position: absolute;
@@ -592,15 +636,41 @@ main.menu .carte .button--cta {
 .loader .offset {
   fill: none;
   stroke-width: 3;
-  stroke: #fff;
+  stroke: #99e2d0;
   stroke-dasharray: 100;
   stroke-dashoffset: 1000;
   stroke-linecap: round;
   width: 80vw;
-  animation: dash 5s ease-in-out alternate infinite;
+  animation: dash 2s 1.2s ease-in-out both alternate infinite;
 }
 .loader .logo {
   width: 80vw;
+  fill: #fff;
+  stroke-width: 0;
+}
+.loader .logo use:nth-child(1) {
+  animation: letters 0.5s 0.15s ease-in-out both;
+}
+.loader .logo use:nth-child(2) {
+  animation: letters 0.5s 0.3s ease-in-out both;
+}
+.loader .logo use:nth-child(3) {
+  animation: letters 0.5s 0.45s ease-in-out both;
+}
+.loader .logo use:nth-child(4) {
+  animation: letters 0.5s 0.6s ease-in-out both;
+}
+.loader .logo use:nth-child(5) {
+  animation: letters 0.5s 0.75s ease-in-out both;
+}
+.loader .logo use:nth-child(6) {
+  animation: letters 0.5s 0.9s ease-in-out both;
+}
+.loader .logo use:nth-child(7) {
+  animation: letters 0.5s 1.05s ease-in-out both;
+}
+.loader .logo use:nth-child(8) {
+  animation: letters 0.5s 1.2s ease-in-out both;
 }
 
 @keyframes loader {
@@ -611,7 +681,7 @@ main.menu .carte .button--cta {
     transform: scale(1);
   }
   95% {
-    clip-path: circle(50%);
+    clip-path: circle(40%);
     opacity: 100%;
     z-index: 5;
   }
@@ -624,15 +694,31 @@ main.menu .carte .button--cta {
 @keyframes dash {
   0% {
     stroke-dashoffset: 1000;
+    stroke-width: 0;
   }
   25% {
     opacity: 75%;
+    stroke-width: 3;
   }
   75% {
     opacity: 25%;
+    stroke-width: 3;
   }
   100% {
     stroke-dashoffset: 0;
+    stroke-width: 1;
+  }
+}
+@keyframes letters {
+  0% {
+    opacity: 0%;
+    transform: translateY(-0.6rem);
+  }
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 

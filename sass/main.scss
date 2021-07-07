@@ -6,6 +6,7 @@
 $clr-primary: #9356dc;
 $clr-secondary: #ff79da;
 $clr-tertiary: #99e2d0;
+$gradient: linear-gradient(to top left, $clr-primary, $clr-secondary);
 
 // Couleurs Arrière Plan
 $clr-bg-default: #fff;
@@ -126,6 +127,30 @@ $delay: 0.15s;
   box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
 }
 
+@mixin button-shadow($border-radius) {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $border-radius;
+    box-shadow: 0rem 0.3rem 0.5rem 0rem lighten($clr-bg-dark, 40%);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Shrikhand&display=swap);
 
 html {
@@ -172,17 +197,19 @@ button {
   letter-spacing: 0.06rem;
   background: $clr-bg-default;
   border-radius: 2.2rem;
-  position: relative;
-  @include shadow();
   cursor: pointer;
   &--cta {
+    @include button-shadow(2.2rem);
+    position: relative;
     padding: $padding-button;
     min-width: 13rem;
-    background: linear-gradient(to top left, $clr-primary, $clr-secondary);
+    background: $gradient;
     color: $clr-bg-default;
   }
   &--usage {
     // ! Mettre un - counter-reset: number; - dans le container parent de ces boutons
+    @include shadow();
+    position: relative;
     margin: 0 0 0 0.8rem;
     padding: $padding-button;
     border-radius: 1.25rem;
@@ -226,12 +253,33 @@ button {
   background: $clr-bg-default;
   border-radius: 1.2rem;
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: 1fr 4.688rem;
-  @include shadow();
-  overflow: hidden;
+  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  transition: all 0.2s ease-in-out;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 1.2rem;
+    box-shadow: 0rem 0.3rem 0.5rem 0rem lighten($clr-bg-dark, 40%);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  &:hover {
+    transform: scale(1.015);
+    &::after {
+      opacity: 1;
+    }
+  }
   &__img-wrapper {
     display: grid;
+    border-radius: 1.2rem 1.2rem 0 0;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     overflow: hidden;
@@ -560,7 +608,9 @@ main.menu {
         justify-content: flex-start;
         text-align: left;
         height: 4.375rem;
-        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        //@include shadow();
         .button__text {
           display: flex;
           flex-direction: column;
@@ -600,6 +650,7 @@ main.menu {
           color: $clr-bg-default;
           transform-origin: right;
           transform: scaleX(0);
+          opacity: 0;
           transition: all 0.5s ease-in-out;
           i.fas {
             transform: rotate(0turn);
@@ -608,6 +659,7 @@ main.menu {
         }
         &:hover {
           .button__order {
+            opacity: 1;
             width: 3.75rem;
             transform: scaleX(1);
             i.fas {
@@ -653,7 +705,7 @@ main.menu {
 
 .loader {
   position: fixed;
-  background: $clr-primary;
+  background: $gradient;
   top: 0;
   right: 0;
   bottom: 0;
@@ -663,22 +715,29 @@ main.menu {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: loader 3s 0.5s ease-in-out both;
+  animation: loader 5s 0.5s ease-in-out both;
   > * {
     position: absolute;
   }
   .offset {
     fill: none;
     stroke-width: 3;
-    stroke: #fff;
+    stroke: $clr-tertiary;
     stroke-dasharray: 100;
     stroke-dashoffset: 1000;
     stroke-linecap: round;
     width: 80vw;
-    animation: dash 5s ease-in-out alternate infinite;
+    animation: dash 2s 1.2s ease-in-out both alternate infinite;
   }
   .logo {
     width: 80vw;
+    fill: #fff;
+    stroke-width: 0;
+    @for $i from 1 to 9 {
+      use:nth-child(#{$i}) {
+        animation: letters 0.5s 0.15s * $i ease-in-out both;
+      }
+    }
   }
 }
 
@@ -690,7 +749,7 @@ main.menu {
     transform: scale(1);
   }
   95% {
-    clip-path: circle(50%);
+    clip-path: circle(40%);
     opacity: 100%;
     z-index: 5;
   }
@@ -704,14 +763,31 @@ main.menu {
 @keyframes dash {
   0% {
     stroke-dashoffset: 1000;
+    stroke-width: 0;
   }
   25% {
     opacity: 75%;
+    stroke-width: 3;
   }
   75% {
     opacity: 25%;
+    stroke-width: 3;
   }
   100% {
     stroke-dashoffset: 0;
+    stroke-width: 1;
+  }
+}
+
+@keyframes letters {
+  0% {
+    opacity: 0%;
+    transform: translateY(-0.6rem);
+  }
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    transform: translateY(0);
   }
 }
