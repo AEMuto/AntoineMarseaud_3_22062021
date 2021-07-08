@@ -34,6 +34,9 @@ $typography: (
     default: #000,
     grey: #7e7e7e,
     white: #fff,
+    primary: $clr-primary,
+    secondary: $clr-secondary,
+    tertiary: $clr-tertiary,
   ),
   font-family: (
     alt: (
@@ -124,23 +127,23 @@ $delay: 0.15s;
 }
 
 @mixin shadow() {
-  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  box-shadow: 0rem 0.2rem 0.4rem 0rem rgba(#000, 0.2);
 }
 
 @mixin button-shadow($border-radius) {
   position: relative;
   z-index: 1;
-  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  box-shadow: 0rem 0.2rem 0.4rem 0rem rgba(#000, 0.2);
   &::after {
     content: "";
     position: absolute;
-    z-index: 0;
+    z-index: -1;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     border-radius: $border-radius;
-    box-shadow: 0rem 0.3rem 0.5rem 0rem lighten($clr-bg-dark, 40%);
+    box-shadow: 0rem 0.3rem 0.5rem 0rem rgba(#000, 0.3);
     opacity: 0;
     transition: all 0.2s ease-in-out;
   }
@@ -236,46 +239,83 @@ button {
       padding: 0.5rem;
     }
   }
-}
-.container-card {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  grid-auto-rows: 37.481259370314845vh;
-  @include responsive(landscape) {
-    grid-auto-rows: 50vh;
+  &--dish {
+    display: flex;
+    border-radius: 1rem;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0;
+    justify-content: flex-start;
+    text-align: left;
+    height: 4.375rem;
+    @include button-shadow(1rem);
+    .button__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      height: 100%;
+      padding: 0.8rem 0 0.8rem 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      h3 {
+        @include fonts(title, bold);
+      }
+      p {
+        @include fonts(light);
+      }
+    }
+    .button__price {
+      padding: 0.8rem 1rem 0.8rem 0;
+      align-self: flex-end;
+      @include fonts(bold);
+    }
+    .button__order {
+      border-radius: 0 1rem 1rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: stretch;
+      background: $clr-tertiary;
+      width: 0;
+      font-size: 1.5rem;
+      color: $clr-bg-default;
+      transform-origin: right;
+      transform: scaleX(0);
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      i.fas {
+        transform: rotate(0turn);
+        transition: 0.5s ease-in-out;
+      }
+    }
+    &:hover {
+      .button__order {
+        opacity: 1;
+        width: 3.75rem;
+        transform: scaleX(1);
+        i.fas {
+          transform: rotate(1turn);
+        }
+      }
+    }
   }
-  @include responsive(lg) {
-    grid-auto-rows: 35vh;
-  }
 }
+
 .card {
-  background: $clr-bg-default;
-  border-radius: 1.2rem;
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-rows: 1fr 4.688rem;
-  box-shadow: 0rem 0.2rem 0.4rem 0rem lighten($clr-bg-dark, 60%);
+  background: $clr-bg-default;
+  border-radius: 1.2rem;
+  @include button-shadow(1.2rem);
   transition: all 0.2s ease-in-out;
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 1.2rem;
-    box-shadow: 0rem 0.3rem 0.5rem 0rem lighten($clr-bg-dark, 40%);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-  }
   &:hover {
     transform: scale(1.015);
-    &::after {
-      opacity: 1;
-    }
   }
   &__img-wrapper {
     display: grid;
@@ -345,6 +385,7 @@ button {
     }
   }
 }
+
 /* Accueil **************************************************************************************/
 
 // Navigation
@@ -382,7 +423,6 @@ header {
   grid-template-areas:
     "hero"
     "usage";
-  text-align: center;
   @include responsive(sm) {
     grid-template-areas: "hero usage";
     grid-auto-columns: 1fr;
@@ -402,6 +442,11 @@ header {
   .hero {
     grid-area: hero;
     background: $clr-bg-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     @include responsive(sm) {
       padding: 2rem;
       border-radius: 2rem;
@@ -415,7 +460,7 @@ header {
       margin-bottom: 2rem;
       @include fonts(title, light);
     }
-    .button {
+    .button--cta {
       margin-bottom: 2rem;
     }
   }
@@ -423,16 +468,20 @@ header {
     grid-area: usage;
     @include responsive(sm) {
       padding: 2rem 0;
+      text-align: center;
     }
     h1 {
       margin: 0 0 2rem 0;
       @include fonts(heading, bold);
     }
-    .container {
+    &__container {
       counter-reset: number;
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
+      // Changement d'aspect des icônes du composant de base .button--usage
+      // pour être plus proche de la maquette & modification
+      // de la couleur d'arrière plan du dernier bouton
       .button.button--usage {
         &:nth-of-type(1) i.fas {
           transform: scale(1.3, 1.2);
@@ -467,6 +516,42 @@ main.accueil {
   h1 {
     margin: 0 0 2rem 0;
     @include fonts(heading, bold);
+  }
+  .container-card {
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-auto-rows: 37.481259370314845vh;
+    @include responsive(landscape) {
+      grid-auto-rows: 50vh;
+    }
+    @include responsive(lg) {
+      grid-auto-rows: 35vh;
+      margin-bottom: 0;
+    }
+    // Combiner pseudo-classe & pseudo-element
+    // pour créer les boutons désignant un nouveau restaurant
+    // ::after est déjà utilisé pour créer des ombres portées
+    // plus forte, donc on utilise ::before pour ne pas avoir
+    // de conflits.
+    .card:nth-of-type(-n + 2)::before {
+      content: "Nouveau";
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0.8rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 0.2rem;
+      @include shadow();
+      z-index: 2;
+      background: $clr-tertiary;
+      color: darken($clr-tertiary, 40%);
+      font-size: 0.875rem;
+      font-family: Roboto, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.04rem;
+    }
   }
 }
 
@@ -511,7 +596,7 @@ main.menu {
     left: 0;
     overflow: hidden;
     height: 17rem;
-    width: 100vw;
+    width: 100%;
     @include responsive(sm) {
       height: 100%;
     }
@@ -523,7 +608,7 @@ main.menu {
   }
   .carte {
     background: $clr-bg-light;
-    padding: 1.8rem $padding-page 6rem $padding-page;
+    padding: 1.8rem $padding-page 5rem $padding-page;
     border-radius: 3rem 3rem 0 0;
     display: flex;
     flex-direction: column;
@@ -531,6 +616,7 @@ main.menu {
       margin: 0 $padding-page 0 $padding-page;
       padding: 1.8rem 2rem 4rem 2rem;
       border-radius: 3rem;
+      @include shadow();
     }
     &__title {
       display: flex;
@@ -598,74 +684,6 @@ main.menu {
           background: $clr-tertiary;
           bottom: -0.5rem;
           left: 0;
-        }
-      }
-      .button--dish {
-        display: flex;
-        border-radius: 1rem;
-        margin: 0 0 1rem 0;
-        letter-spacing: 0;
-        justify-content: flex-start;
-        text-align: left;
-        height: 4.375rem;
-        position: relative;
-        z-index: 1;
-        //@include shadow();
-        .button__text {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          flex: 1;
-          height: 100%;
-          padding: 0.8rem 0 0.8rem 0.8rem;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          > * {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          h3 {
-            @include fonts(title, bold);
-          }
-          p {
-            @include fonts(light);
-          }
-        }
-        .button__price {
-          padding: 0.8rem 1rem 0.8rem 0;
-          align-self: flex-end;
-          @include fonts(bold);
-        }
-        .button__order {
-          border-radius: 0 1rem 1rem 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          align-self: stretch;
-          background: $clr-tertiary;
-          width: 0;
-          font-size: 1.5rem;
-          color: $clr-bg-default;
-          transform-origin: right;
-          transform: scaleX(0);
-          opacity: 0;
-          transition: all 0.5s ease-in-out;
-          i.fas {
-            transform: rotate(0turn);
-            transition: 0.5s ease-in-out;
-          }
-        }
-        &:hover {
-          .button__order {
-            opacity: 1;
-            width: 3.75rem;
-            transform: scaleX(1);
-            i.fas {
-              transform: rotate(1turn);
-            }
-          }
         }
       }
     }
@@ -742,19 +760,13 @@ main.menu {
 }
 
 @keyframes loader {
-  0% {
-    clip-path: circle(100%);
-  }
   85% {
-    transform: scale(1);
-  }
-  95% {
-    clip-path: circle(40%);
     opacity: 100%;
+  }
+  99% {
     z-index: 5;
   }
   100% {
-    transform: scale(0);
     opacity: 0%;
     z-index: -9999;
   }

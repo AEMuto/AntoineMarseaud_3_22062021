@@ -12,10 +12,13 @@
 
 <body>
 
+  <!-- Loader -->
   <div class="loader">
+    <!-- Contour du Logo -->
     <svg viewBox="0 0 320 65" class="offset">
       <use xlink:href="public/img/logo/logo-offset.svg#logo-offset" />
     </svg>
+    <!-- Logo & Lettres le composant -->
     <svg viewBox="0 0 320 65" class="logo">
       <use xlink:href="public/img/logo/logo.svg#logo-01" />
       <use xlink:href="public/img/logo/logo.svg#logo-02" />
@@ -28,6 +31,7 @@
     </svg>
   </div>
 
+  <!-- Navigation -->
   <nav>
     <h1>ohmyfood</h1>
     <div class="location">
@@ -35,30 +39,35 @@
     </div>
   </nav>
 
+  <!-- Header -->
   <header>
     <section class="hero">
       <h1>Réservez le menu qui vous convient</h1>
       <p>Découvrez des restaurants d'exception, sélectionnés par nos soins.</p>
-      <a href="#restaurants"><button class="button button--cta">Explorer nos restaurants</button></a>
+      <a href="#restaurants">
+        <div class="button button--cta">Explorer nos restaurants</div>
+      </a>
     </section>
     <section class="usage">
       <h1>Fonctionnement</h1>
-      <div class="container">
-        <button class="button button--usage">
+      <div class="usage__container">
+        <div class="button button--usage">
           <i class="fas fa-mobile-alt fa-fw"></i>
           <p>Choisissez un restaurant</p>
-        </button>
-        <button class="button button--usage">
+        </div>
+        <div class="button button--usage">
           <i class="fas fa-list-ul fa-fw"></i>
           <p>Composez votre menu</p>
-        </button>
-        <button class="button button--usage">
+        </div>
+        <div class="button button--usage">
           <i class="fas fa-store fa-fw"></i>
           <p>Dégustez au restaurant</p>
-        </button>
+        </div>
       </div>
     </section>
   </header>
+
+  <!-- Main -->
   <main class="accueil">
     <section id="restaurants">
       <h1>Restaurants</h1>
@@ -126,6 +135,8 @@
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
   <footer>
     <h1>ohmyfood</h1>
     <ul>
