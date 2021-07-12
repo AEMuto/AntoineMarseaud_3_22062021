@@ -12,8 +12,8 @@ nav {
     @include fonts(logo, alt);
     i.fas {
       position: absolute;
-      left: $padding-page;
       top: 1.2rem;
+      left: $padding-page;
       font-size: 1.3rem;
     }
   }

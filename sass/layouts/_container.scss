@@ -14,17 +14,17 @@ main.accueil {
     @include fonts(heading, bold);
   }
   .container-card {
-    margin-bottom: 2rem;
     display: grid;
+    margin-bottom: 2rem;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     grid-auto-rows: 37.481259370314845vh;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     @include responsive(landscape) {
       grid-auto-rows: 50vh;
     }
     @include responsive(lg) {
-      grid-auto-rows: 35vh;
       margin-bottom: 0;
+      grid-auto-rows: 35vh;
     }
     // Combiner pseudo-classe & pseudo-element
     // pour créer les boutons désignant un nouveau restaurant
@@ -32,21 +32,21 @@ main.accueil {
     // plus forte, donc on utilise ::before pour ne pas avoir
     // de conflits.
     .card:nth-of-type(-n + 2)::before {
-      content: "Nouveau";
       position: absolute;
+      z-index: 2;
       top: 0;
       right: 0;
-      margin: 0.8rem;
       padding: 0.5rem 0.8rem;
-      border-radius: 0.2rem;
-      @include shadow();
-      z-index: 2;
+      margin: 0.8rem;
       background: $clr-tertiary;
+      border-radius: 0.2rem;
       color: darken($clr-tertiary, 40%);
-      font-size: 0.875rem;
+      content: "Nouveau";
       font-family: Roboto, sans-serif;
+      font-size: 0.875rem;
       font-weight: 500;
       letter-spacing: 0.04rem;
+      @include shadow();
     }
   }
 }

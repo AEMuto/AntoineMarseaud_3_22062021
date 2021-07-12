@@ -7,28 +7,28 @@ header {
     "hero"
     "usage";
   @include responsive(sm) {
-    grid-template-areas: "hero usage";
-    grid-auto-columns: 1fr;
-    gap: 2rem;
     padding: 0 $padding-page;
     margin: 2rem 0;
+    gap: 2rem;
+    grid-auto-columns: 1fr;
+    grid-template-areas: "hero usage";
   }
   @include responsive(lg) {
     grid-auto-columns: 2fr 1fr;
   }
   > * {
-    padding: 2rem $padding-page;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 2rem $padding-page;
   }
   .hero {
-    grid-area: hero;
-    background: $clr-bg-light;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background: $clr-bg-light;
+    grid-area: hero;
     text-align: center;
     @include responsive(sm) {
       padding: 2rem;
@@ -58,10 +58,10 @@ header {
       @include fonts(heading, bold);
     }
     &__container {
-      counter-reset: number;
       display: grid;
-      grid-template-columns: 1fr;
+      counter-reset: number;
       gap: 2rem;
+      grid-template-columns: 1fr;
       // Changement d'aspect des icônes du composant de base .button--usage
       // pour être plus proche de la maquette & modification
       // de la couleur d'arrière plan du dernier bouton

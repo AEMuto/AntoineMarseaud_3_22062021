@@ -2,29 +2,29 @@
 
 .loader {
   position: fixed;
-  background: $gradient;
+  z-index: 5;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   animation: loader 5s 0.5s ease-in-out both;
+  background: $gradient;
   > * {
     position: absolute;
   }
   .offset {
+    width: 80vw;
+    animation: dash 2s 1.2s ease-in-out both alternate infinite;
     fill: none;
-    stroke-width: 3;
     stroke: $clr-tertiary;
     stroke-dasharray: 100;
     stroke-dashoffset: 1000;
     stroke-linecap: round;
-    width: 80vw;
-    animation: dash 2s 1.2s ease-in-out both alternate infinite;
+    stroke-width: 3;
   }
   .logo {
     width: 80vw;
@@ -46,8 +46,8 @@
     z-index: 5;
   }
   100% {
-    opacity: 0%;
     z-index: -9999;
+    opacity: 0%;
   }
 }
 

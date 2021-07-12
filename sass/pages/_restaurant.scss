@@ -2,9 +2,9 @@
 @use '../utils/mixins' as *;
 
 main.menu {
+  position: relative;
   padding: 0;
   padding-top: 13.75rem;
-  position: relative;
   background: none;
   @include responsive(sm) {
     padding-bottom: 4rem;
@@ -15,8 +15,8 @@ main.menu {
     top: 0;
     left: 0;
     overflow: hidden;
-    height: 17rem;
     width: 100%;
+    height: 17rem;
     @include responsive(sm) {
       height: 100%;
     }
@@ -27,14 +27,14 @@ main.menu {
     }
   }
   .carte {
-    background: $clr-bg-light;
-    padding: 1.8rem $padding-page 5rem $padding-page;
-    border-radius: 3rem 3rem 0 0;
     display: flex;
     flex-direction: column;
+    padding: 1.8rem $padding-page 5rem $padding-page;
+    background: $clr-bg-light;
+    border-radius: 3rem 3rem 0 0;
     @include responsive(sm) {
-      margin: 0 $padding-page 0 $padding-page;
       padding: 1.8rem 2rem 4rem 2rem;
+      margin: 0 $padding-page 0 $padding-page;
       border-radius: 3rem;
       @include shadow();
     }
@@ -47,17 +47,17 @@ main.menu {
         margin: 0;
       }
       .carte__like {
-        margin: 0.3rem 1rem 0 0;
+        display: flex;
         width: 2rem;
         height: 2rem;
-        display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        margin: 0.3rem 1rem 0 0;
         cursor: pointer;
         > * {
           background: #000;
-          background-clip: text;
           -webkit-background-clip: text;
+          background-clip: text;
           color: transparent;
         }
         i.far.fa-heart {
@@ -76,8 +76,8 @@ main.menu {
               $clr-primary,
               $clr-secondary
             );
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
           }
           i.fas.fa-heart {
@@ -93,23 +93,23 @@ main.menu {
       margin: 1rem 0;
       h2 {
         @include fonts(light);
-        text-transform: uppercase;
-        margin: 0 0 2rem 0;
         position: relative;
+        margin: 0 0 2rem 0;
+        text-transform: uppercase;
         &::after {
-          content: "";
           position: absolute;
-          height: 0.15rem;
-          width: 2.3rem;
-          background: $clr-tertiary;
           bottom: -0.5rem;
           left: 0;
+          width: 2.3rem;
+          height: 0.15rem;
+          background: $clr-tertiary;
+          content: "";
         }
       }
     }
     .button--cta {
-      margin: 2rem auto 0 auto;
       width: 13rem;
+      margin: 2rem auto 0 auto;
     }
   }
 }

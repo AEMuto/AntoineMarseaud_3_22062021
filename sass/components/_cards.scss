@@ -3,20 +3,20 @@
 
 .card {
   display: grid;
-  grid-template-rows: 1fr 4.688rem;
   background: $clr-bg-default;
   border-radius: 1.2rem;
-  @include button-shadow(1.2rem);
+  grid-template-rows: 1fr 4.688rem;
   transition: all 0.2s ease-in-out;
+  @include button-shadow(1.2rem);
   &:hover {
     transform: scale(1.015);
   }
   &__img-wrapper {
     display: grid;
+    overflow: hidden;
     border-radius: 1.2rem 1.2rem 0 0;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    overflow: hidden;
     source {
       // Firefox a besoin que l'on déclare explicitement que <source>
       // ne doit pas s'afficher 🤔
@@ -42,15 +42,15 @@
       position: absolute;
       right: 1rem;
       bottom: 0.7rem;
+      display: flex;
       width: 2rem;
       height: 2rem;
-      display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       > * {
         background: #000;
-        background-clip: text;
         -webkit-background-clip: text;
+        background-clip: text;
         color: transparent;
       }
       i.far.fa-heart {
@@ -69,8 +69,8 @@
             $clr-primary,
             $clr-secondary
           );
-          background-clip: text;
           -webkit-background-clip: text;
+          background-clip: text;
           color: transparent;
         }
         i.fas.fa-heart {
