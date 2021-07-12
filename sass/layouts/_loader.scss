@@ -1,0 +1,84 @@
+@use '../utils/variables' as *;
+
+.loader {
+  position: fixed;
+  background: $gradient;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: loader 5s 0.5s ease-in-out both;
+  > * {
+    position: absolute;
+  }
+  .offset {
+    fill: none;
+    stroke-width: 3;
+    stroke: $clr-tertiary;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 1000;
+    stroke-linecap: round;
+    width: 80vw;
+    animation: dash 2s 1.2s ease-in-out both alternate infinite;
+  }
+  .logo {
+    width: 80vw;
+    fill: #fff;
+    stroke-width: 0;
+    @for $i from 1 to 9 {
+      use:nth-child(#{$i}) {
+        animation: letters 0.5s 0.15s * $i ease-in-out both;
+      }
+    }
+  }
+}
+
+@keyframes loader {
+  85% {
+    opacity: 100%;
+  }
+  99% {
+    z-index: 5;
+  }
+  100% {
+    opacity: 0%;
+    z-index: -9999;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+    stroke-width: 0;
+  }
+  25% {
+    opacity: 75%;
+    stroke-width: 3;
+  }
+  75% {
+    opacity: 25%;
+    stroke-width: 3;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-width: 1;
+  }
+}
+
+@keyframes letters {
+  0% {
+    opacity: 0%;
+    transform: translateY(-0.6rem);
+  }
+  70% {
+    opacity: 100%;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

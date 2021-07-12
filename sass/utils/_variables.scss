@@ -1,0 +1,70 @@
+// Couleurs Principales
+$clr-primary: #9356dc;
+$clr-secondary: #ff79da;
+$clr-tertiary: #99e2d0;
+$gradient: linear-gradient(to top left, $clr-primary, $clr-secondary);
+$light-gradient: linear-gradient(
+  to top left,
+  lighten($clr-primary, 5%),
+  lighten($clr-secondary, 5%)
+);
+
+// Couleurs Arrière Plan
+$clr-bg-default: #fff;
+$clr-bg-base: #eaeaea;
+$clr-bg-dark: #353535;
+$clr-bg-light: #f6f6f6;
+
+// Breakpoints
+$sm: 768px;
+$md: 900px;
+$lg: 1200px;
+
+// Padding
+// Avec calc on fait l'interpolation linéaire du padding entre 2 intervalles,
+// 20px en min (mobile) & 50px en max(desktop).
+// clamp(20px, 5.333333333vw, 50px) pourrait être une alternative
+$padding: calc(
+  20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065)
+);
+// Grâce à max() on definit la largeur maximum
+// du contenu des blocs à 1200px
+$padding-page: max(#{$padding}, (100vw - 1200px) / 2);
+$padding-button: 1.2rem;
+
+// Typographie
+$typography: (
+  color: (
+    default: #000,
+    grey: #7e7e7e,
+    white: #fff,
+    primary: $clr-primary,
+    secondary: $clr-secondary,
+    tertiary: $clr-tertiary,
+  ),
+  font-family: (
+    alt: (
+      Shrikhand,
+      cursive,
+    ),
+    default: (
+      Roboto,
+      sans-serif,
+    ),
+  ),
+  font-size: (
+    logo: 1.875rem,
+    heading: 1.5rem,
+    title: 1.125rem,
+    sub: 1.075rem,
+    default: 1rem,
+    small: 0.875rem,
+  ),
+  font-weight: (
+    thin: 100,
+    light: 300,
+    default: 400,
+    medium: 500,
+    bold: 700,
+  ),
+);

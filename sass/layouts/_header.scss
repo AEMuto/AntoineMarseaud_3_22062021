@@ -1,0 +1,88 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+header {
+  display: grid;
+  grid-template-areas:
+    "hero"
+    "usage";
+  @include responsive(sm) {
+    grid-template-areas: "hero usage";
+    grid-auto-columns: 1fr;
+    gap: 2rem;
+    padding: 0 $padding-page;
+    margin: 2rem 0;
+  }
+  @include responsive(lg) {
+    grid-auto-columns: 2fr 1fr;
+  }
+  > * {
+    padding: 2rem $padding-page;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero {
+    grid-area: hero;
+    background: $clr-bg-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    @include responsive(sm) {
+      padding: 2rem;
+      border-radius: 2rem;
+    }
+    h1 {
+      width: 85%;
+      margin: 0 auto 1rem auto;
+      @include fonts(heading, bold);
+    }
+    p {
+      margin-bottom: 2rem;
+      @include fonts(title, light);
+    }
+    .button--cta {
+      margin-bottom: 2rem;
+    }
+  }
+  .usage {
+    grid-area: usage;
+    @include responsive(sm) {
+      padding: 2rem 0;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 2rem 0;
+      @include fonts(heading, bold);
+    }
+    &__container {
+      counter-reset: number;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      // Changement d'aspect des icônes du composant de base .button--usage
+      // pour être plus proche de la maquette & modification
+      // de la couleur d'arrière plan du dernier bouton
+      .button.button--usage {
+        &:nth-of-type(1) i.fas {
+          transform: scale(1.3, 1.2);
+        }
+        &:nth-of-type(n + 2) i.fas {
+          transform: scale(0.9, 1.1);
+        }
+        &:nth-of-type(3) {
+          background: adjust-color(
+            $clr-primary,
+            $saturation: 50%,
+            $lightness: 36%
+          );
+          i.fas {
+            color: $clr-primary;
+          }
+        }
+      }
+    }
+  }
+}

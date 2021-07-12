@@ -1,0 +1,149 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.button {
+  @include fonts(medium);
+  background: $clr-bg-default;
+  border-radius: 2.2rem;
+  cursor: pointer;
+  letter-spacing: 0.06rem;
+
+  &--cta {
+    @include button-shadow(2.2rem);
+    align-self: center;
+    background: $gradient;
+    color: $clr-bg-default;
+    padding: $padding-button;
+    text-align: center;
+
+    &::before {
+      background: $light-gradient;
+      border-radius: 2.2rem;
+      bottom: 0;
+      content: '';
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: all 0.35s ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--usage {
+    // ! Mettre un - counter-reset: number; - dans le container parent de ces boutons
+    @include shadow();
+    background: $clr-bg-light;
+    border-radius: 1.25rem;
+    cursor: auto;
+    display: flex;
+    margin: 0 0 0 0.8rem;
+    padding: $padding-button;
+    position: relative;
+
+    p {
+      @include fonts(bold);
+    }
+
+    i.fas {
+      color: map-get($typography, color, grey);
+      font-size: 1.2rem;
+      margin: 0 0.5rem 0 0.3rem;
+    }
+
+    &::before {
+      background: $clr-primary;
+      clip-path: circle();
+      color: $clr-bg-default;
+      content: counter(number);
+      counter-increment: number;
+      left: -0.8rem;
+      padding: 0.5rem;
+      position: absolute;
+      top: 0.8rem;
+    }
+  }
+
+  &--dish {
+    @include button-shadow(1rem);
+    border-radius: 1rem;
+    display: flex;
+    height: 4.375rem;
+    justify-content: flex-start;
+    letter-spacing: 0;
+    margin: 0 0 1rem;
+    text-align: left;
+
+    .button__text {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 0.8rem 0 0.8rem 0.8rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      h3 {
+        @include fonts(title, bold);
+      }
+
+      p {
+        @include fonts(light);
+      }
+    }
+
+    .button__price {
+      @include fonts(bold);
+      align-self: flex-end;
+      padding: 0.8rem 1rem 0.8rem 0;
+    }
+
+    .button__order {
+      align-items: center;
+      align-self: stretch;
+      background: $clr-tertiary;
+      border-radius: 0 1rem 1rem 0;
+      color: $clr-bg-default;
+      display: flex;
+      font-size: 1.5rem;
+      justify-content: center;
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: all 0.5s ease-in-out;
+      width: 0;
+
+      i.fas {
+        transform: rotate(0turn);
+        transition: 0.5s ease-in-out;
+      }
+    }
+
+    &:hover {
+      .button__order {
+        opacity: 1;
+        transform: scaleX(1);
+        width: 3.75rem;
+
+        i.fas {
+          transform: rotate(1turn);
+        }
+      }
+    }
+  }
+}

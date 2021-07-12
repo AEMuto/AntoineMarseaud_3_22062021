@@ -1,0 +1,28 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+// On hérite box-sizing: border-box; depuis notre sélecteur <html>
+// Apparemment mieux que d'appliquer box-sizing: border-box; directement au sélecteur *
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  color: #000;
+  text-decoration: none;
+}

@@ -1,0 +1,24 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+footer {
+  padding: 1rem $padding-page 2rem $padding-page;
+  background: $clr-bg-dark;
+  h1 {
+    margin: 0 0 1rem 0;
+    @include fonts(white, alt, title);
+  }
+  li {
+    margin: 0 0 0.5rem 0;
+    i.fas {
+      margin: 0 0.6rem 0 0;
+      font-size: 0.725rem;
+    }
+    &:nth-of-type(-n + 2) a {
+      @include fonts(white);
+    }
+    &:nth-of-type(n + 3) a {
+      @include fonts(white, light);
+    }
+  }
+}
