@@ -4,7 +4,7 @@
   "description": "Un site répertoriant les menus de restaurants gastronomiques",
   "main": "index.html",
   "scripts": {
-    "sass": "sass --watch ./sass/main.scss:./public/css/main.css"
+    "sass": "sass --watch --style=compressed ./sass/main.scss:./public/css/main.css"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/AEMuto/AntoineMarseaud_3_22062021/issues"
   },
-  "homepage": "https://github.com/AEMuto/AntoineMarseaud_3_22062021#readme"
+  "homepage": "https://github.com/AEMuto/AntoineMarseaud_3_22062021#readme",
+  "devDependencies": {
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-order": "^4.1.0"
+  }
 }
