@@ -13,7 +13,7 @@ main.accueil {
     margin: 0 0 2rem 0;
     @include fonts(heading, bold);
   }
-  .container-card {
+  .restaurants__container {
     display: grid;
     margin-bottom: 2rem;
     gap: 2rem;
