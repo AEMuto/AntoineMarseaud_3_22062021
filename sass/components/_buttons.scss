@@ -60,14 +60,20 @@
 
     &::before {
       position: absolute;
-      top: 0.8rem;
+      top: 50%;
       left: -0.8rem;
+      display: flex;
+      width: 1.6rem;
+      height: 1.6rem;
+      align-items: center;
+      justify-content: center;
       padding: 0.5rem;
       background: $clr-primary;
-      clip-path: circle(0.8rem);
+      border-radius: 50%;
       color: $clr-bg-default;
       content: counter(number);
       counter-increment: number;
+      transform: translateY(-50%);
     }
   }
 
