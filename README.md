@@ -9,11 +9,11 @@ J'ai utilisé la méthodologie [BEM](https://en.bem.info/methodology/) avec la s
 
 ## Cas d'usage
 ### Exemple: Animation du *Loading Spinner*
-Le *Loading Spinner* que l'on aperçoit lors de la navigation d'une page à une autre est constitué d'une part :
+Le *Loading Spinner* que l'on aperçoit lorsque l'utilisateur navigue sur la page d'accueil est constitué d'une part :
 - D'un élément `<svg>` logo.svg, divisé en `<g>` pour chaque lettres composant le logo, auxquels j'ai attribué un identifiant unique : `<g id="logo-XX">` où `XX` est un intervalle allant de `01` à `08`.
 - Et d'autre part, d'un élément `<svg>` logo-offset.svg qui est le contour du logo à partir duquel je fait l'animation des traits circulant autour de celui-ci.
 
-Ainsi pour la page d'accueil `index.html` nous avons l'html suivant:
+Ainsi pour la page d'accueil `index.html` nous avons l'html suivant pour notre *Loading Spinner* :
 ```html
 <!-- Loader -->
 <div class="loader">
