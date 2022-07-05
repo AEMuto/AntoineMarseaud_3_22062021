@@ -34,7 +34,7 @@ Ainsi pour la page d'accueil `index.html` nous avons l'html suivant pour notre *
   </svg>
 </div>
 ```
-Ensuite je définis les animations de la manière suivante :
+Ensuite je définis les animations de la manière suivante dans `/sass/layouts/_loader.scss` :
 ```scss
 .loader {
   /*...*/
