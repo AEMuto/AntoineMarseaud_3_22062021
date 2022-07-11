@@ -1,6 +1,6 @@
 {
   "name": "ohmyfood",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Un site répertoriant les menus de restaurants gastronomiques",
   "main": "index.html",
   "scripts": {
